@@ -467,6 +467,8 @@ static void udev_joypad_poll(void)
       }
    }
 
+   RARCH_LOG("[udev]: polling devices.\n");
+
    for (p = 0; p < MAX_USERS; p++)
    {
       int i, len;
@@ -475,6 +477,8 @@ static void udev_joypad_poll(void)
 
       if (pad->fd < 0)
          continue;
+      
+      RARCH_LOG("[udev]: polling events off: %s.\n", pad->ident);
 
       while ((len = read(pad->fd, events, sizeof(events))) > 0)
       {
