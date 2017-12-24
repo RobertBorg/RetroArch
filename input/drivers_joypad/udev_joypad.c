@@ -467,8 +467,6 @@ static void udev_joypad_poll(void)
       }
    }
 
-   RARCH_LOG("[udev]: polling devices.\n");
-
    for (p = 0; p < MAX_USERS; p++)
    {
       int i, len;
@@ -477,9 +475,6 @@ static void udev_joypad_poll(void)
 
       if (pad->fd < 0)
          continue;
-      
-      RARCH_LOG("[udev]: polling events off: %s.\n", pad->ident);
-
       while ((len = read(pad->fd, events, sizeof(events))) > 0)
       {
          len /= sizeof(*events);
@@ -619,6 +614,7 @@ error:
 
 static bool udev_joypad_button(unsigned port, uint16_t joykey)
 {
+   RARCH_LOG("[udev]: udev_joypaudev_joypad_button: %d.\n", port);
    const struct udev_joypad *pad = (const struct udev_joypad*)&udev_pads[port];
    unsigned hat_dir              = GET_HAT_DIR(joykey);
 
@@ -646,6 +642,7 @@ static bool udev_joypad_button(unsigned port, uint16_t joykey)
 
 static void udev_joypad_get_buttons(unsigned port, retro_bits_t *state)
 {
+   RARCH_LOG("[udev]: udev_joypad_get_buttons: %d.\n", port);
 	const struct udev_joypad *pad = (const struct udev_joypad*)&udev_pads[port];
 	if (pad)
    {
@@ -682,6 +679,7 @@ static int16_t udev_joypad_axis(unsigned port, uint32_t joyaxis)
 
 static bool udev_joypad_query_pad(unsigned pad)
 {
+   RARCH_LOG("[udev]: udev_joypad_query_pad: %d.\n", pad);
    return pad < MAX_USERS && udev_pads[pad].fd >= 0;
 }
 
