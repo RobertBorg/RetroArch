@@ -615,7 +615,6 @@ error:
 
 static bool udev_joypad_button(unsigned port, uint16_t joykey)
 {
-   RARCH_LOG("[udev]: udev_joypaudev_joypad_button: %d\n", port);
    const struct udev_joypad *pad = (const struct udev_joypad*)&udev_pads[port];
    unsigned hat_dir              = GET_HAT_DIR(joykey);
 
@@ -638,7 +637,9 @@ static bool udev_joypad_button(unsigned port, uint16_t joykey)
       }
       return false;
    }
-   return joykey < UDEV_NUM_BUTTONS && BIT64_GET(pad->buttons, joykey);
+   bool val = joykey < UDEV_NUM_BUTTONS && BIT64_GET(pad->buttons, joykey); 
+   RARCH_LOG("[udev]: udev_joypad_button: %d:%d:%d\n", port, joykey, val);
+   return val;
 }
 
 static void udev_joypad_get_buttons(unsigned port, retro_bits_t *state)
