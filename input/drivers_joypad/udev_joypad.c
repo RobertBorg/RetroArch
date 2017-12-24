@@ -478,6 +478,7 @@ static void udev_joypad_poll(void)
       while ((len = read(pad->fd, events, sizeof(events))) > 0)
       {
          len /= sizeof(*events);
+         RARCH_LOG("[udev]: polling device: %d for : %d events\n", p, len);
          for (i = 0; i < len; i++)
          {
             uint16_t type = events[i].type;
@@ -614,7 +615,7 @@ error:
 
 static bool udev_joypad_button(unsigned port, uint16_t joykey)
 {
-   RARCH_LOG("[udev]: udev_joypaudev_joypad_button: %d.\n", port);
+   RARCH_LOG("[udev]: udev_joypaudev_joypad_button: %d\n", port);
    const struct udev_joypad *pad = (const struct udev_joypad*)&udev_pads[port];
    unsigned hat_dir              = GET_HAT_DIR(joykey);
 
