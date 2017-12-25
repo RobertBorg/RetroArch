@@ -637,8 +637,10 @@ static bool udev_joypad_button(unsigned port, uint16_t joykey)
       }
       return false;
    }
-   bool val = joykey < UDEV_NUM_BUTTONS && BIT64_GET(pad->buttons, joykey); 
-   RARCH_LOG("[udev]: udev_joypad_button: %d:%d:%d\n", port, joykey, val);
+   bool val = joykey < UDEV_NUM_BUTTONS && BIT64_GET(pad->buttons, joykey);
+   if(val) {
+      RARCH_LOG("[udev]: udev_joypad_button: %d:%d:%d\n", port, joykey, val);
+   }
    return val;
 }
 
@@ -681,7 +683,7 @@ static int16_t udev_joypad_axis(unsigned port, uint32_t joyaxis)
 
 static bool udev_joypad_query_pad(unsigned pad)
 {
-   RARCH_LOG("[udev]: udev_joypad_query_pad: %d.\n", pad);
+   RARCH_LOG("[udev]: udev_joypad_query_pad: %d\n", pad);
    return pad < MAX_USERS && udev_pads[pad].fd >= 0;
 }
 
