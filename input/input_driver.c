@@ -717,7 +717,7 @@ int16_t input_state(unsigned port, unsigned device,
    if (bsv_movie_is_playback_off())
       bsv_movie_ctl(BSV_MOVIE_CTL_SET_INPUT, &res);
 
-   if(res) {
+   if(id == 9) {
          RARCH_LOG("[input] getting input %d:%d\n", id, res);
    }
    return res;
