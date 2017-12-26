@@ -875,7 +875,7 @@ static int16_t udev_input_state(void *data,
    udev_input_t *udev         = (udev_input_t*)data;
 
    if(id == 3) {
-      RARCH_LOG("udev_input_state %d\n", id);
+      RARCH_LOG("udev_input_state device: %d, id: %d\n", device, id);
    }
    switch (device)
    {
