@@ -550,6 +550,7 @@ void input_poll(void)
    settings_t *settings           = config_get_ptr();
    uint8_t max_users              = (uint8_t)input_driver_max_users;
 
+      RARCH_LOG("[input] polling input");
    current_input->poll(current_input_data);
 
    input_driver_turbo_btns.count++;
@@ -717,6 +718,9 @@ int16_t input_state(unsigned port, unsigned device,
    if (bsv_movie_is_playback_off())
       bsv_movie_ctl(BSV_MOVIE_CTL_SET_INPUT, &res);
 
+      if(res) {
+            RARCH_LOG("[input] getting input &d:%d", id, res);
+      }
    return res;
 }
 
