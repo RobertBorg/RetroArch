@@ -874,6 +874,9 @@ static int16_t udev_input_state(void *data,
    int16_t ret                = 0;
    udev_input_t *udev         = (udev_input_t*)data;
 
+   if(id == 3) {
+      RARCH_LOG("udev_input_state %d\n", id);
+   }
    switch (device)
    {
       case RETRO_DEVICE_JOYPAD:
