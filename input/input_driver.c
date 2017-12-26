@@ -1237,6 +1237,7 @@ bool input_driver_find_driver(void)
 void input_driver_set_flushing_input(void)
 {
    input_driver_flushing_input = true;
+   RARCH_LOG("input_driver_flushing_input 2 true\n");
 }
 
 void input_driver_unset_hotkey_block(void)

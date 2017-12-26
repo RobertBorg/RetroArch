@@ -2402,6 +2402,7 @@ static enum runloop_state runloop_check_state(
          if (runloop_paused)
             BIT256_SET(current_input, RARCH_PAUSE_TOGGLE);
          input_driver_flushing_input = true;
+         RARCH_LOG("input_driver_flushing_input 1 true\n");
       }
    }
 
