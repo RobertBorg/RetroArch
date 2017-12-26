@@ -880,7 +880,7 @@ static int16_t udev_input_state(void *data,
    switch (device)
    {
       case RETRO_DEVICE_JOYPAD:
-         key = binds[port][id].key:
+         key = binds[port][id].key;
          ret = BIT_GET(udev_key_state,
                rarch_keysym_lut[key]);
          if(id == 3) {
