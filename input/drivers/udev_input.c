@@ -873,18 +873,26 @@ static int16_t udev_input_state(void *data,
 {
    int16_t ret                = 0;
    udev_input_t *udev         = (udev_input_t*)data;
+   retro_key key;
 
-   if(id == 3) {
-      RARCH_LOG("udev_input_state device: %d, id: %d\n", device, id);
-   }
+
+
    switch (device)
    {
       case RETRO_DEVICE_JOYPAD:
+         key = binds[port][id].key:
          ret = BIT_GET(udev_key_state,
-               rarch_keysym_lut[binds[port][id].key]);
-         if (!ret)
+               rarch_keysym_lut[key]);
+         if(id == 3) {
+            RARCH_LOG("[udev] udev_input_state bit_get key: %d, val: %d \n", key, ret);
+         }
+         if (!ret) {
             ret = input_joypad_pressed(udev->joypad,
                   joypad_info, port, binds[port], id);
+            if(id == 3) {
+               RARCH_LOG("[udev] udev_input_state input_joypad_pressed val: %d \n", ret);
+            }
+         }
          return ret;
       case RETRO_DEVICE_ANALOG:
          ret = udev_analog_pressed(binds[port], idx, id);
