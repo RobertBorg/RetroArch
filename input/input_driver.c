@@ -1203,7 +1203,7 @@ bool input_driver_find_driver(void)
    if (i >= 0)
       current_input = (const input_driver_t*)
          input_driver_find_handle(i);
-      RARCH_LOG("current input i: %d %X\n", i , reinterpret_cast<uint64_t>(current_input));
+      RARCH_LOG("current input i: %d %X\n", i , (uint64_t)current_input);
    else
    {
       unsigned d;
@@ -1216,7 +1216,7 @@ bool input_driver_find_driver(void)
 
       current_input = (const input_driver_t*)
          input_driver_find_handle(0);
-      RARCH_LOG("current input i: %d %X\n", i , reinterpret_cast<uint64_t>(current_input));
+      RARCH_LOG("current input i: %d %X\n", i , (uint64_t)current_input);
 
       if (!current_input)
       {
