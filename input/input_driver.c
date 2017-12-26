@@ -619,6 +619,8 @@ int16_t input_state(unsigned port, unsigned device,
 
    device &= RETRO_DEVICE_MASK;
 
+   RARCH_LOG("[input] getting input %d\n", id);
+
    if (bsv_movie_is_playback_on())
    {
       int16_t bsv_result;
