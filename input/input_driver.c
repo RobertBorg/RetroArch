@@ -628,10 +628,6 @@ int16_t input_state(unsigned port, unsigned device,
       bsv_movie_ctl(BSV_MOVIE_CTL_SET_END, NULL);
    }
 
-   if(id == 3) {
-      RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
-   }
-
    if (     !input_driver_flushing_input
          && !input_driver_block_libretro_input)
    {
@@ -672,9 +668,6 @@ int16_t input_state(unsigned port, unsigned device,
 
             res = current_input->input_state(
                   current_input_data, joypad_info, libretro_input_binds, port, device, idx, id);
-            if(id == 3) {
-               RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
-            }
          }
       }
 
@@ -682,7 +675,7 @@ int16_t input_state(unsigned port, unsigned device,
       if (overlay_ptr)
          input_state_overlay(overlay_ptr, &res, port, device, idx, id);
       if(id == 3) {
-         RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+         RARCH_LOG("[input] getting overlay input %d:%d:%d\n", id, idx, res);
       }
 #endif
 
@@ -690,7 +683,7 @@ int16_t input_state(unsigned port, unsigned device,
       if (input_driver_remote)
          input_remote_state(&res, port, device, idx, id);
       if(id == 3) {
-         RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+         RARCH_LOG("[input] getting network input %d:%d:%d\n", id, idx, res);
       }
 #endif
 
@@ -699,7 +692,7 @@ int16_t input_state(unsigned port, unsigned device,
          input_mapper_state(input_driver_mapper,
                &res, port, device, idx, id);
       if(id == 3) {
-         RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+         RARCH_LOG("[input] getting keymapper input %d:%d:%d\n", id, idx, res);
       }
 #endif
 
