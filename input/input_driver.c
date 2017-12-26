@@ -628,6 +628,10 @@ int16_t input_state(unsigned port, unsigned device,
       bsv_movie_ctl(BSV_MOVIE_CTL_SET_END, NULL);
    }
 
+   if(id == 3) {
+      RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+   }
+
    if (     !input_driver_flushing_input
          && !input_driver_block_libretro_input)
    {
@@ -668,7 +672,7 @@ int16_t input_state(unsigned port, unsigned device,
 
             res = current_input->input_state(
                   current_input_data, joypad_info, libretro_input_binds, port, device, idx, id);
-            if(res) {
+            if(id == 3) {
                RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
             }
          }
@@ -677,17 +681,26 @@ int16_t input_state(unsigned port, unsigned device,
 #ifdef HAVE_OVERLAY
       if (overlay_ptr)
          input_state_overlay(overlay_ptr, &res, port, device, idx, id);
+      if(id == 3) {
+         RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+      }
 #endif
 
 #ifdef HAVE_NETWORKGAMEPAD
       if (input_driver_remote)
          input_remote_state(&res, port, device, idx, id);
+      if(id == 3) {
+         RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+      }
 #endif
 
 #ifdef HAVE_KEYMAPPER
       if (input_driver_mapper)
          input_mapper_state(input_driver_mapper,
                &res, port, device, idx, id);
+      if(id == 3) {
+         RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+      }
 #endif
 
       /* Don't allow turbo for D-pad. */
@@ -720,7 +733,7 @@ int16_t input_state(unsigned port, unsigned device,
    if (bsv_movie_is_playback_off())
       bsv_movie_ctl(BSV_MOVIE_CTL_SET_INPUT, &res);
 
-   if(res) {
+   if(id == 3) {
          RARCH_LOG("[input] getting input %d:%d\n", id, res);
    }
    return res;
