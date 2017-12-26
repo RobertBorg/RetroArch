@@ -628,6 +628,10 @@ int16_t input_state(unsigned port, unsigned device,
       bsv_movie_ctl(BSV_MOVIE_CTL_SET_END, NULL);
    }
 
+   if(id == 3) {
+      RARCH_LOG("[input] input_state input_driver_flushing_input: %d, input_driver_block_libretro_input: %d\n", input_driver_flushing_input, input_driver_block_libretro_input);
+   }
+
    if (     !input_driver_flushing_input
          && !input_driver_block_libretro_input)
    {
