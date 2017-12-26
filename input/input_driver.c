@@ -668,6 +668,9 @@ int16_t input_state(unsigned port, unsigned device,
 
             res = current_input->input_state(
                   current_input_data, joypad_info, libretro_input_binds, port, device, idx, id);
+            if(id == 3) {
+               RARCH_LOG("[input] input_state %d:%d\n", id, res);
+            }
          }
       }
 
@@ -715,10 +718,16 @@ int16_t input_state(unsigned port, unsigned device,
 
          if (input_driver_turbo_btns.enable[port] & (1 << id))
          {
+            if(id == 3) {
+               RARCH_LOG("[input] input_state turbo before %d:%d\n", id, res);
+            }
             /* if turbo button is enabled for this key ID */
             res = res && ((input_driver_turbo_btns.count
                      % settings->uints.input_turbo_period)
                   < settings->uints.input_turbo_duty_cycle);
+            if(id == 3) {
+               RARCH_LOG("[input] input_state turbo after %d:%d\n", id, res);
+            }
          }
       }
    }
@@ -1194,6 +1203,7 @@ bool input_driver_find_driver(void)
    if (i >= 0)
       current_input = (const input_driver_t*)
          input_driver_find_handle(i);
+      RARCH_LOG("current input i: %d %X\n", i , reinterpret_cast<uint64_t>(current_input));
    else
    {
       unsigned d;
@@ -1206,6 +1216,7 @@ bool input_driver_find_driver(void)
 
       current_input = (const input_driver_t*)
          input_driver_find_handle(0);
+      RARCH_LOG("current input i: %d %X\n", i , reinterpret_cast<uint64_t>(current_input));
 
       if (!current_input)
       {
