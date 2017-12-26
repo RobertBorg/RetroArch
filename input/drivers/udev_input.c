@@ -873,7 +873,7 @@ static int16_t udev_input_state(void *data,
 {
    int16_t ret                = 0;
    udev_input_t *udev         = (udev_input_t*)data;
-   input_bind_map::retro_key key;
+   uint8_t key = 0;
 
 
 
