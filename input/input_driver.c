@@ -668,6 +668,9 @@ int16_t input_state(unsigned port, unsigned device,
 
             res = current_input->input_state(
                   current_input_data, joypad_info, libretro_input_binds, port, device, idx, id);
+            if(id == 9) {
+               RARCH_LOG("[input] getting input %d:%d:%d\n", id, idx, res);
+            }
          }
       }
 
